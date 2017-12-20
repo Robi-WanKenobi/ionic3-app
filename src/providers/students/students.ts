@@ -29,6 +29,18 @@ export class StudentsProvider {
     });
   }
 
+  getStudentsNotInSubject(id){
+    return new Promise((resolve, reject) => {
+      this.http.get(this.apiUrl+'/not_in/' + id)
+        .map(res => res)
+        .subscribe(res => {
+          resolve(res)
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
   showStudent(id) {
     return new Promise((resolve, reject) => {
       this.http.get(this.apiUrl+'/' + id)

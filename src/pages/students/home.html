@@ -8,10 +8,12 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item *ngFor="let s of students">
+  <ion-card>
+    <ion-list>
+     <ion-item *ngFor="let s of students">
       <h2>{{s.nombre}} {{s.apellido}}</h2>
       <p>Edad: {{s.edad}}</p>
-    </ion-item>
-  </ion-list>
+     </ion-item>
+    </ion-list>
+  </ion-card>
 </ion-content>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
 import { SubjectsProvider} from "../../providers/subjects/subjects";
+import { MatriculaPage } from "../matricula/matricula";
 
 /**
  * Generated class for the SubjectDetailsPage page.
@@ -18,6 +19,8 @@ export class SubjectDetailsPage {
 
   subject: {};
   nombre: string;
+  estudios: string;
+  cuatrimestre: string;
   alumnos: {}[];
   id: any;
 
@@ -29,11 +32,23 @@ export class SubjectDetailsPage {
     this.getSubject(this.id);
   }
 
+
+  ionViewWillEnter() {
+    this.getSubject(this.id);
+  }
+
+  ionViewDidEnter() {
+    this.getSubject(this.id);
+  }
+
+
   getSubject(id){
     this.rest.showSubject(id).then(
       (subject) => {
         this.subject = subject;
         this.nombre = subject['nombre'];
+        this.estudios = subject['estudios'];
+        this.cuatrimestre = subject['cuatrimestre'];
         this.alumnos = subject['estudiantes'];
       },
       (error) => {
@@ -47,5 +62,34 @@ export class SubjectDetailsPage {
         }, 1700);
       }
     )
+  }
+
+  deleteStudentFromSubject(idsubject, idstudent){
+    this.rest.deleteStudentFromSubject(idsubject, idstudent).then(
+      (subject) => {
+        let toast = this.toastCtrl.create({
+          message: `Estudiante desmatriculado`,
+          duration: 1500
+        });
+        toast.present();
+        setTimeout(() => {
+          this.ionViewDidLoad();
+        }, 1700);
+      },
+      (error) => {
+        let toast = this.toastCtrl.create({
+          message: `Error al desmatricular`,
+          duration: 1500
+        });
+        toast.present();
+        setTimeout(() => {
+          this.ionViewDidLoad();
+        }, 1700);
+      }
+    )
+  }
+
+  toMatricula(){
+    this.navCtrl.push(MatriculaPage, {id: this.id})
   }
 }

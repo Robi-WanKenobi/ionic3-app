@@ -19,6 +19,7 @@ import { Toast } from "@ionic-native/toast";
 import { SubjectsProvider } from '../providers/subjects/subjects';
 import { AddsubjectPage} from "../pages/addsubject/addsubject";
 import { SubjectDetailsPage} from "../pages/subject-details/subject-details";
+import {MatriculaPage} from "../pages/matricula/matricula";
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { SubjectDetailsPage} from "../pages/subject-details/subject-details";
     AddstudentPage,
     AddsubjectPage,
     SubjectDetailsPage,
+    MatriculaPage,
     TabsPage
   ],
   imports: [
@@ -43,6 +45,7 @@ import { SubjectDetailsPage} from "../pages/subject-details/subject-details";
     AddstudentPage,
     AddsubjectPage,
     SubjectDetailsPage,
+    MatriculaPage,
     TabsPage
   ],
   providers: [
