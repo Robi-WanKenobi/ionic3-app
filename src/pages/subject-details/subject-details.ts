@@ -69,22 +69,22 @@ export class SubjectDetailsPage {
       (subject) => {
         let toast = this.toastCtrl.create({
           message: `Estudiante desmatriculado`,
-          duration: 1500
+          duration: 1000
         });
         toast.present();
         setTimeout(() => {
           this.ionViewDidLoad();
-        }, 1700);
+        }, 1200);
       },
       (error) => {
         let toast = this.toastCtrl.create({
           message: `Error al desmatricular`,
-          duration: 1500
+          duration: 1000
         });
         toast.present();
         setTimeout(() => {
           this.ionViewDidLoad();
-        }, 1700);
+        }, 1200);
       }
     )
   }

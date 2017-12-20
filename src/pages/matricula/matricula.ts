@@ -45,12 +45,12 @@ export class MatriculaPage {
       (result) => {
         let toast = this.toastCtrl.create({
           message: `Estudiante matriculado`,
-          duration: 1500
+          duration: 1000
         });
         toast.present();
         setTimeout(() => {
           this.getStudents();
-        }, 1700);
+        }, 1200);
       },
       (error) => {
         this.errorMessage = <any>error;
