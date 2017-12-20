@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{nombre}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <h2 padding-left>Estudiantes matriculados</h2>
+    <ion-item-sliding *ngFor="let e of alumnos">
+      <ion-item>
+        <h2>{{e.nombre}} {{e.apellido}}</h2>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="danger">
+          <ion-icon name=close></ion-icon>
+          Desmatricular
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
