@@ -6,17 +6,23 @@
 
 <ion-content>
   <ion-card>
-    <ion-card-header>
-      Detalles
-    </ion-card-header>
-  <p padding-left>
-    <ion-icon name="arrow-dropright" item-start></ion-icon>
-    Cuatrimestre de {{cuatrimestre}}
-  </p>
-  <p padding-left>
-    <ion-icon name="arrow-dropright" item-start></ion-icon>
-    Modalidad de {{estudios}}
-  </p>
+    <ion-row>
+      <ion-col col-10>
+        <p padding-left>
+          <ion-icon name="arrow-dropright" item-start></ion-icon>
+          Cuatrimestre de {{cuatrimestre}}
+        </p>
+        <p padding-left>
+          <ion-icon name="arrow-dropright" item-start></ion-icon>
+          Modalidad de {{estudios}}
+        </p>
+      </ion-col>
+      <ion-col col-2>
+        <button ion-button (click)="presentEditSubjectModal()" color="warning" icon-only block>
+          <ion-icon name="create"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
   </ion-card>
   <ion-card>
   <ion-card-header>

@@ -11,7 +11,7 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class StudentsProvider {
 
-  private apiUrl = 'http://localhost:3000/student';
+  private apiUrl = 'http://147.83.7.158:3000/student';
 
   constructor(public http: HttpClient) {
     console.log('Hello RestProvider Provider');

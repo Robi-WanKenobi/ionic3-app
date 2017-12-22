@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
+import {IonicPage, ModalController, NavController, NavParams, ToastController} from 'ionic-angular';
 import { SubjectsProvider} from "../../providers/subjects/subjects";
 import { MatriculaPage } from "../matricula/matricula";
+import {EditSubjectPage} from "../edit-subject/edit-subject";
 
 /**
  * Generated class for the SubjectDetailsPage page.
@@ -24,14 +25,19 @@ export class SubjectDetailsPage {
   alumnos: {}[];
   id: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public rest: SubjectsProvider, public toastCtrl: ToastController) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public rest: SubjectsProvider,
+    public toastCtrl: ToastController,
+    public modalCtrl: ModalController
+    ) {
   }
 
   ionViewDidLoad() {
     this.id = this.navParams.get('id');
     this.getSubject(this.id);
   }
-
 
   ionViewWillEnter() {
     this.getSubject(this.id);
@@ -54,12 +60,12 @@ export class SubjectDetailsPage {
       (error) => {
         let toast = this.toastCtrl.create({
           message: `Error al cargar detalles`,
-          duration: 1500
+          duration: 1000
         });
         toast.present();
         setTimeout(() => {
           this.navCtrl.pop();
-        }, 1700);
+        }, 1200);
       }
     )
   }
@@ -91,5 +97,9 @@ export class SubjectDetailsPage {
 
   toMatricula(){
     this.navCtrl.push(MatriculaPage, {id: this.id})
+  }
+
+  presentEditSubjectModal() {
+    this.navCtrl.push(EditSubjectPage, {id: this.id});
   }
 }

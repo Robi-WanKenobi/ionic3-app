@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import {NavController, ToastController} from 'ionic-angular';
 import { StudentsProvider } from "../../providers/students/students";
 import { AddstudentPage} from "../addstudent/addstudent";
+import { SearchPipe} from "../../pipes/search/search";
+import {EditStudentPage} from "../edit-student/edit-student";
 
 @Component({
   selector: 'page-home',
@@ -11,8 +13,9 @@ export class StudentsPage {
 
   students: any;
   errorMessage: string;
+  term: string = '';
 
-  constructor(public navCtrl: NavController, private rest: StudentsProvider) {
+  constructor(public navCtrl: NavController, private rest: StudentsProvider, private toastCtrl: ToastController) {
 
   }
 
@@ -34,7 +37,41 @@ export class StudentsPage {
       });
   }
 
+  deleteStudent(id){
+    this.rest.deleteStudent(id).then(
+      (deleted) => {
+        let toast = this.toastCtrl.create({
+          message: `Estudiante borrado`,
+          duration: 1000
+        });
+        toast.present();
+        setTimeout(() => {
+          this.ionViewDidLoad();
+        }, 1200);
+      },
+      (error) => {
+        let toast = this.toastCtrl.create({
+          message: `Error al borrar el estudiante`,
+          duration: 1000
+        });
+        toast.present();
+        setTimeout(() => {
+          // this.navCtrl.popToRoot();
+          // might try this instead
+        }, 1200);
+      }
+    )
+  }
+
   toAddStudent(){
     this.navCtrl.push(AddstudentPage);
+  }
+
+  toEditStudent(id){
+    this.navCtrl.push(EditStudentPage, {id: id});
+  }
+
+  searchBy(ev: any) {
+    this.term = ev.target.value;
   }
 }

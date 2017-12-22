@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import {NavController, NavParams} from 'ionic-angular';
 import { SubjectsProvider } from "../../providers/subjects/subjects";
 import {AddsubjectPage} from "../addsubject/addsubject";
 import {SubjectDetailsPage} from "../subject-details/subject-details";
 import {ToastController} from "ionic-angular";
+import { SearchPipe} from "../../pipes/search/search";
+import {StudentsPage} from "../students/students";
 
 @Component({
   selector: 'page-contact',
@@ -13,13 +15,22 @@ export class SubjectsPage {
 
   subjects: any;
   errorMessage: string;
-  search: string;
+  term: string = '';
+  modalidad: string;
+  cuatrimestre: string;
+  showfilters: boolean;
 
-  constructor(public navCtrl: NavController, private rest: SubjectsProvider, private toastCtrl: ToastController) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private rest: SubjectsProvider,
+    private toastCtrl: ToastController,
+    ) {
 
   }
 
   ionViewDidLoad() {
+    this.showfilters = false;
     this.getSubjects();
   }
 
@@ -42,23 +53,23 @@ export class SubjectsPage {
       (deleted) => {
         let toast = this.toastCtrl.create({
           message: `Asignatura borrada`,
-          duration: 1500
+          duration: 1000
         });
         toast.present();
         setTimeout(() => {
           this.ionViewDidLoad();
-        }, 1700);
+        }, 1200);
       },
       (error) => {
         let toast = this.toastCtrl.create({
           message: `Error al borrar la asignatura`,
-          duration: 1500
+          duration: 1000
         });
         toast.present();
         setTimeout(() => {
           // this.navCtrl.popToRoot();
           // might try this instead
-        }, 1700);
+        }, 1200);
       }
     )
   }
@@ -69,5 +80,52 @@ export class SubjectsPage {
 
   toDetails(id){
     this.navCtrl.push(SubjectDetailsPage, {id: id});
+  }
+
+  searchBy(ev: any) {
+    this.term = ev.target.value;
+  }
+
+  sort(){
+    this.rest.showSubjectSorted().then(
+      (subjects) => {
+        this.subjects = subjects;
+      },
+      (error) => {
+        this.errorMessage = <any>error;
+      });
+  }
+
+  deleteFilters()
+  {
+    this.getSubjects();
+  }
+
+  filterbyMod(modalidad){
+    this.rest.showSubject_byEstudios(modalidad).then(
+      (subjects) => {
+        this.subjects = subjects;
+      },
+      (error) => {
+        this.errorMessage = <any>error;
+      });
+  }
+
+  filterbyCuatri(cuatri){
+    this.rest.showSubject_byCuatri(cuatri).then(
+      (subjects) => {
+        this.subjects = subjects;
+      },
+      (error) => {
+        this.errorMessage = <any>error;
+      });
+  }
+
+  toggleFilters(){
+    this.showfilters = true;
+  }
+
+  hideFilters(){
+    this.showfilters = false;
   }
 }

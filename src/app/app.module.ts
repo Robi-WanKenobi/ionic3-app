@@ -2,7 +2,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-
+import { SearchPipe } from "../pipes/search/search";
 
 import { SubjectsPage } from "../pages/subjects/subjects";
 import { StudentsPage } from '../pages/students/students';
@@ -19,7 +19,10 @@ import { Toast } from "@ionic-native/toast";
 import { SubjectsProvider } from '../providers/subjects/subjects';
 import { AddsubjectPage} from "../pages/addsubject/addsubject";
 import { SubjectDetailsPage} from "../pages/subject-details/subject-details";
-import {MatriculaPage} from "../pages/matricula/matricula";
+import { MatriculaPage } from "../pages/matricula/matricula";
+import { FilterSubjectsPage } from "../pages/filter-subjects/filter-subjects";
+import {EditSubjectPage} from "../pages/edit-subject/edit-subject";
+import {EditStudentPage} from "../pages/edit-student/edit-student";
 
 @NgModule({
   declarations: [
@@ -30,7 +33,11 @@ import {MatriculaPage} from "../pages/matricula/matricula";
     AddsubjectPage,
     SubjectDetailsPage,
     MatriculaPage,
-    TabsPage
+    SearchPipe,
+    TabsPage,
+    FilterSubjectsPage,
+    EditSubjectPage,
+    EditStudentPage
   ],
   imports: [
     HttpClientModule,
@@ -46,6 +53,9 @@ import {MatriculaPage} from "../pages/matricula/matricula";
     AddsubjectPage,
     SubjectDetailsPage,
     MatriculaPage,
+    FilterSubjectsPage,
+    EditSubjectPage,
+    EditStudentPage,
     TabsPage
   ],
   providers: [
@@ -55,7 +65,8 @@ import {MatriculaPage} from "../pages/matricula/matricula";
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    SubjectsProvider
+    SubjectsProvider,
+    SearchPipe
   ]
 })
 export class AppModule {}

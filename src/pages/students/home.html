@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-      <button (click)="toAddStudent()" ion-button icon-right round large block>
+      <button (click)="toAddStudent()" ion-button large icon-right block>
         Estudiantes
         <ion-icon name="md-add-circle"></ion-icon>
       </button>
@@ -8,12 +8,33 @@
 </ion-header>
 
 <ion-content>
+  <ion-toolbar>
+    <ion-searchbar
+      [(ngModel)]="search"
+      [showCancelButton]="shouldShowCancel"
+      (ionInput)="searchBy($event)">
+    </ion-searchbar>
+  </ion-toolbar>
   <ion-card>
     <ion-list>
-     <ion-item *ngFor="let s of students">
-      <h2>{{s.nombre}} {{s.apellido}}</h2>
-      <p>Edad: {{s.edad}}</p>
-     </ion-item>
+      <ion-item-sliding *ngFor="let s of students | search: term">
+        <ion-item>
+          <h2>{{s.nombre}} {{s.apellido}}</h2>
+          <p>Edad: {{s.edad}}</p>
+        </ion-item>
+        <ion-item-options side="left">
+          <button (click)="toEditStudent(s._id)" ion-button color="warning">
+            <ion-icon name=create></ion-icon>
+            Editar
+          </button>
+        </ion-item-options>
+        <ion-item-options side="right">
+          <button (click)="deleteStudent(s._id)" ion-button color="danger">
+            <ion-icon name=trash></ion-icon>
+            Borrar
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
     </ion-list>
   </ion-card>
 </ion-content>

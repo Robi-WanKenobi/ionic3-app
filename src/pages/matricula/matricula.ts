@@ -43,14 +43,12 @@ export class MatriculaPage {
  matricularStudent(id){
     this.subject.addStudentToSubject(this.id, id).then(
       (result) => {
+        this.getStudents();
         let toast = this.toastCtrl.create({
           message: `Estudiante matriculado`,
           duration: 1000
         });
         toast.present();
-        setTimeout(() => {
-          this.getStudents();
-        }, 1200);
       },
       (error) => {
         this.errorMessage = <any>error;

@@ -5,11 +5,18 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>filterSubjects</ion-title>
+    <ion-row>
+      <ion-col col-10>
+        <ion-title>Filtros</ion-title>
+      </ion-col>
+      <ion-col col-2>
+        <a (click)="applyFilters()" icon-only>
+          <ion-icon name="checkbox"></ion-icon>
+        </a>
+      </ion-col>
+    </ion-row>
   </ion-navbar>
-
 </ion-header>
 
 

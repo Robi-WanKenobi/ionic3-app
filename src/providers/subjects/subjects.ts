@@ -11,7 +11,7 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class SubjectsProvider {
 
-  private apiUrl = 'http://localhost:3000/subject';
+  private apiUrl = 'http://147.83.7.158:3000/subject';
 
   constructor(public http: HttpClient) {
     console.log('Hello SubjectsProvider Provider');

@@ -33,17 +33,17 @@ export class AddsubjectPage {
       .then((result) => {
         let toast = this.toastCtrl.create({
           message: `Asignatura añadida`,
-          duration: 1500
+          duration: 1000
         });
         toast.present();
         setTimeout(() => {
           this.navCtrl.pop();
-        }, 1700);
+        }, 1200);
       }, (err) => {
         console.log(err);
         let toast = this.toastCtrl.create({
-          message: `Error al añadir estudiante`,
-          duration: 2000
+          message: `Error al añadir asignatura`,
+          duration: 1000
         });
         toast.present();
       });

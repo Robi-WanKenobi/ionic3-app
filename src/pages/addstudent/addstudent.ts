@@ -32,20 +32,20 @@ export class AddstudentPage {
       .then((result) => {
         let toast = this.toastCtrl.create({
           message: `Estudiante añadido`,
-          duration: 1500
+          duration: 1000
         });
         toast.present();
         setTimeout(() => {
           // this.navCtrl.popToRoot();
           // might try this instead
           this.navCtrl.pop();
-        }, 1700);
+        }, 1200);
       //this.router.navigate(['/student-details', id]);
     }, (err) => {
       console.log(err);
         let toast = this.toastCtrl.create({
           message: `Error al añadir estudiante`,
-          duration: 2000
+          duration: 1000
         });
         toast.present();
     });

@@ -45,12 +45,12 @@ export class EditSubjectPage {
       (error) => {
         let toast = this.toastCtrl.create({
           message: `Error al cargar detalles`,
-          duration: 1500
+          duration: 1000
         });
         toast.present();
         setTimeout(() => {
           this.navCtrl.pop();
-        }, 1700);
+        }, 1200);
       }
     )
   }
@@ -60,22 +60,22 @@ export class EditSubjectPage {
       (subject) => {
         let toast = this.toastCtrl.create({
           message: `Asignatura actualizada`,
-          duration: 1500
+          duration: 1000
         });
         toast.present();
         setTimeout(() => {
           this.viewCtrl.dismiss();
-        }, 1700);
+        }, 1200);
       },
       (error) => {
         let toast = this.toastCtrl.create({
-          message: `Error al actualizar`,
-          duration: 1500
+          message: `Error al actualizar asignatura`,
+          duration: 1000
         });
         toast.present();
         setTimeout(() => {
           this.navCtrl.pop();
-        }, 1700);
+        }, 1200);
       }
     )
   }
